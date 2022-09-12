@@ -1,0 +1,39 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.HomePage>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = null;
+}
+
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>@Model.Title</title>
+  <style>
+	h1 {
+		color: @(Model.Colours)
+  	}
+  </style>
+</head>
+
+<h1>@Model.Name</h1>
+<h2>@Model.Title</h2>
+<h3>Copyright @DateTime.Now.Year</h3>
+
+@if(Model.Names != null && Model.Names.Any()){
+	<ul>
+		@foreach (var name in Model.Names)
+		{
+			<li>@name</li>
+		}
+	</ul>
+}
+
+
+
+@if(Model.Image != null && Model.HidePicture != true){
+	<img style="max-width: 10vw;" src="@Model.Image.Url()" alt="A mother and her baby learning to walk">
+}
+
+<p>@Model.BodyText</p>
